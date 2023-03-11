@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QString>
 
 class FilterWidget: public QWidget
 {
@@ -10,8 +13,11 @@ class FilterWidget: public QWidget
 public:
     FilterWidget(QWidget *parent = nullptr);
 
-private:
+//private:
+    QVBoxLayout* lay;
     QPushButton* fromFilterback_button;
+    QLabel* image;
+    void setImage(QString);
 };
 
 #endif // FILTER_H

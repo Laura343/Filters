@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <QVBoxLayout>
 
 CameraWidget::CameraWidget(QWidget *parent)
     : QWidget(parent)
@@ -6,13 +7,10 @@ CameraWidget::CameraWidget(QWidget *parent)
     goToPhotos_button = new QPushButton("Add a photo");
     goToFilter_button = new QPushButton("Click");
 
-    QPalette pal = QPalette();
-
-    // set black background
-    pal.setColor(QPalette::Window, Qt::black);
-
-    this->setAutoFillBackground(true);
-    this->setPalette(pal);
+    QVBoxLayout* lay=new QVBoxLayout;
+    lay->addWidget(goToFilter_button);
+    lay->addWidget(goToPhotos_button);
+    setLayout(lay);
 
 }
 

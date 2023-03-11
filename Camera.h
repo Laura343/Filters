@@ -11,7 +11,7 @@ class CameraWidget : public QWidget
 public:
     CameraWidget(QWidget *parent = nullptr);
 
-private:
+//private:
     QPushButton *goToPhotos_button;
     QPushButton *goToFilter_button;
 };

@@ -2,12 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include <QStackedLayout>
+#include "Camera.h"
+#include "Filter.h"
+#include "Photos.h"
 
-class QStackedLayout;
-class QMouseEvent;
-class CameraWidget;
-class PhotosWidget;
-class FilterWidget;
 
 class MainWindow : public QWidget
 {
@@ -16,9 +15,6 @@ class MainWindow : public QWidget
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-protected:
-    void mousePressEvent (QMouseEvent *event);
 
 private:
     QStackedLayout *stackedLayout;
