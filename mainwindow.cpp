@@ -1,7 +1,14 @@
 #include "mainwindow.h"
+
+#include <QMouseEvent>
 #include <QPushButton>
-#include <QVBoxLayout>
 #include <QStackedLayout>
+#include <QStackedLayout>
+#include <QVBoxLayout>
+
+#include "Camera.h"
+#include "Filter.h"
+#include "Photos.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -10,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     photosWidget = new PhotosWidget;
     filterWidget = new FilterWidget;
 
-    QStackedLayout *stackedLayout = new QStackedLayout;
+    stackedLayout = new QStackedLayout;
     stackedLayout->addWidget(cameraWidget);
     stackedLayout->addWidget(photosWidget);
     stackedLayout->addWidget(filterWidget);
@@ -23,6 +30,12 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    const auto randomViewIndex = event->timestamp() % 3;
+    stackedLayout->setCurrentIndex(randomViewIndex);
 }
 
 
