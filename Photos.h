@@ -27,7 +27,6 @@ public:
                                         "C:/Users/hovha/ACA/ConnectionsBetweenWidgets/image3.jpg",
                                         "C:/Users/hovha/ACA/ConnectionsBetweenWidgets/image4.jpg",
                                         "C:/Users/hovha/ACA/ConnectionsBetweenWidgets/plus.jpg"};
-    void addPhoto();
 };
 
 

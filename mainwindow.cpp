@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QVBoxLayout>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -39,6 +40,43 @@ MainWindow::MainWindow(QWidget *parent)
         filterWidget->setImage(photosWidget->path_array[3]);
         stackedLayout->setCurrentIndex(2);});
 
+    connect(photosWidget->button_array[4],&QToolButton::clicked,this,&MainWindow::addPhoto);
+}
+
+
+void MainWindow::addPhoto()
+{
+    QString filePath = QFileDialog::getOpenFileName(nullptr, "Open File", "", "JPEG files (*.jpg);;All files (*.*)");
+    QToolButton* button = new QToolButton(this);
+    button->setIcon(QIcon(filePath));
+    button->setIconSize(QSize(200, 200));
+    button->setAutoRaise(true);
+    button->setStyleSheet("QToolButton { border: none; }");
+    photosWidget->button_array.append(button);
+
+
+    QToolButton* tmp=new QToolButton;
+    tmp=photosWidget->button_array[photosWidget->button_array.size()-2];
+    photosWidget->button_array[photosWidget->button_array.size()-2]=photosWidget->button_array[photosWidget->button_array.size()-1];
+    photosWidget->button_array[photosWidget->button_array.size()-1]=tmp;
+
+    photosWidget->lay->removeItem(photosWidget->grid_lay);
+    if (photosWidget->grid_lay)
+    {
+        delete photosWidget->grid_lay;
+    }
+
+    photosWidget->grid_lay= new QGridLayout();
+    for(int i=0;i<photosWidget->button_array.size();i++)
+    {
+        photosWidget->grid_lay->addWidget(photosWidget->button_array[i],i/3,i%3);
+    }
+    photosWidget->lay->addLayout(photosWidget->grid_lay);
+    setLayout(photosWidget->grid_lay);
+
+    connect(photosWidget->button_array[photosWidget->button_array.size()-2],&QToolButton::clicked,this,[this,filePath](){
+        filterWidget->setImage(filePath);
+        stackedLayout->setCurrentIndex(2);});
 }
 
 

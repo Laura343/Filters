@@ -15,6 +15,7 @@ class MainWindow : public QWidget
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void addPhoto();
 
 private:
     QStackedLayout *stackedLayout;
